@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const gravatar = require("gravatar");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+//for key:
+const config = require("config");
 
 //for schema:
 const User = require("../../models/User");
@@ -60,13 +63,25 @@ router.post(
       //save user to data:
       await user.save();
       //Return jsonwebtoken for the authentication key for login:
-      res.send("User registered");
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        { expiresIn: "1d" },
+        (err, token) => {
+          if (err) throw err;
+          return res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server erorr");
+      res.status(500).send("Server error");
     }
-
-    res.send("User Route");
   }
 );
 
