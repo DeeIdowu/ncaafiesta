@@ -15,7 +15,6 @@ router.get("/", auth, async (req, res) => {
     //returning user data w/id no password
     const user = await User.findById(req.user.id).select("-password");
     res.json(user);
-    console.log(user);
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server Error");
