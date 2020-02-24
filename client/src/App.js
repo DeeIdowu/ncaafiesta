@@ -1,4 +1,4 @@
-import React, { Fragement, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Layout:
 import NavBar from "./components/layout/Navbar";
@@ -27,7 +27,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          <NavBar />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route component={Routes} />
