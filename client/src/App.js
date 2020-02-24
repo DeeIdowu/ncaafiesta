@@ -1,25 +1,42 @@
-import React from "react";
-//import logo from './logo.svg';
+import React, { Fragement, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+//Layout:
+import NavBar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+//Routes:
+import Routes from "./components/routing/Routes";
+
+//Redux:
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
 }
 
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route component={Routes} />
+          </Switch>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
+
+export default App;
 export default App;
