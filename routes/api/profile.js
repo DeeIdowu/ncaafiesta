@@ -46,15 +46,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const {
-      team,
-      location,
-      bio,
-      youtube,
-      twitter,
-      facebook,
-      instagram
-    } = req.body;
+    const { team, location, bio, twitter, facebook, instagram } = req.body;
     //profile object:
     const profileFields = {};
     //fields added to  profile object:
