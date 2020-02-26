@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import uuid from "uuid/v4";
 import { SET_ALERT, REMOVE_ALERT } from "./types";
 
 //via thunk

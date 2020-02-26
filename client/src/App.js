@@ -13,6 +13,7 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 import "./App.css";
+import { check } from "express-validator";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -21,7 +22,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
-  }, []);
+  }, [check]);
 
   return (
     <Provider store={store}>
@@ -38,5 +39,4 @@ const App = () => {
   );
 };
 
-export default App;
 export default App;
