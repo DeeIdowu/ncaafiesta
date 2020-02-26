@@ -22,7 +22,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
-  }, [check]);
+  }, []);
 
   return (
     <Provider store={store}>
