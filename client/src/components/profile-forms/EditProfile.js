@@ -18,16 +18,7 @@ const EditProfile = ({
     instagram: ""
   });
   //destructuring:
-  const {
-    location,
-
-    bio,
-    twitter,
-    facebook,
-    linkedin,
-
-    instagram
-  } = formData;
+  const { location, bio, twitter, facebook, instagram } = formData;
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 

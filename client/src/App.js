@@ -13,7 +13,6 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 import "./App.css";
-import { check } from "express-validator";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
